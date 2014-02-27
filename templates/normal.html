@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block context %}
+    <div class="row">
+        <div class="span8">
+        {% block content %}{% endblock %}
+        </div>
+        <div class="span2" style="border:1px solid #c43c35;">
+            <div>统计信息</div>
+            <div>说说</div>
+            <div>留言板</div>
+        </div>
+    </div>
+{% endblock %}

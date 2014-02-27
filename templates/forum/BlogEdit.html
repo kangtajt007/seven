@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load page_tag %}
+{% block resource %}
+    <link href="{% static "css/blog/blog.css" %}" rel="stylesheet" media="screen">
+    <link href="{% static "js/ueditor/themes/default/css/umeditor.min.css" %}" type="text/css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="{% static "js/ueditor/umeditor.config.js" %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static "js/ueditor/umeditor.min.js" %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static "js/ueditor/lang/zh-cn/zh-cn.js" %}"></script>
+    <script type="text/javascript">
+        $(function(){
+            var ue = UM.getEditor('myEditor');
+        });
+
+        function preview(){
+            var html = UM.getEditor('myEditor').getAllHtml();
+            var w = window.open('', '_blank', ''),
+            d = w.document;
+            d.open();
+            d.write('<html><head></head><body><div>'+html+'</div></body></html>');
+            d.close();
+        }
+
+        function publish(){
+            var content = UM.getEditor('myEditor').getContentTxt();
+            $("input[name='content']").val(content);
+            $("#blog_form").submit();
+        }
+    </script>
+{% endblock resource %}
+
+{% block context %}
+    <ul class="breadcrumb">
+        <li><a href="#">首页</a> <span class="divider">/</span></li>
+        <li><a href="/blog/list/1/">博客</a> <span class="divider">/</span></li>
+        <li class="active">写博客</li>
+    </ul>
+
+    <div class="box effect1" style="padding: 10px 0;">
+        <form id="blog_form" action="/blog/deploy/" method="post">
+            {% csrf_token %}
+            <table class="table edit_table">
+                <tbody>
+                <tr>
+                    <th>标题:</th>
+                    <td colspan="3">
+                        <input type="text" name="subject" class="input-block-level" placeholder="输入博客标题"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 80px;">分类:</th>
+                    <td>
+                        <select class="span2" name="type">
+                            {% if types %}
+                                {% for type in types %}
+                                    <option value="{{ type.id }}">{{ type.type_name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </td>
+                    <th style="width: 80px;">标签:</th>
+                    <td>
+                        <input type="text" name="tag" class="span5" placeholder="输入标签(多个标签用逗号分隔)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>正文:</th>
+                    <td colspan="3">
+                        <script type="text/plain" id="myEditor" name="myEditor" style="width:100%;height:340px;"></script>
+                        <input type="hidden" name="content"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="3">
+                        <button type="button" title="预览" style="margin-left: 10px;" class="btn btn-info" onclick="preview()">预览</button>
+                        <button type="button" title="保存草稿" style="margin-left: 10px;" class="btn btn-success">保存</button>
+                        <button type="button" title="发布博客" class="btn btn-primary pull-right" onclick="publish()">发布</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+{% endblock %}

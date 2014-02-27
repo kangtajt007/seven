@@ -1,0 +1,212 @@
+body {
+    font-size: 12px;
+    line-height: 25px;
+    background: #cccccc url('../img/geometry.png') 0 0 repeat;
+    font-family: "Microsoft YaHei",SimSun;
+}
+
+span{
+    cursor: default;
+}
+
+.hidden{
+    display: none;
+}
+
+.center {
+    display: table;
+    display:block\0;
+    *display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top_div{
+    background: none repeat scroll 0 0 rgba(209, 209, 209, 0.7) !important;
+    height: 35px;
+    left: 0;
+    line-height: 35px;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+}
+
+.masthead{
+    padding:35px 0 0 0;
+}
+
+/* Custom container */
+.container {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.container > hr {
+    margin: 60px 0;
+}
+
+/* Customize the navbar links to be fill the entire space of the .navbar */
+.navbar .navbar-inner {
+    padding: 0;
+}
+
+.navbar .nav {
+    margin: 0;
+    display: table;
+    width: 100%;
+}
+
+.navbar .nav > li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+}
+
+.navbar .nav li a {
+    font-weight: bold;
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, .75);
+    border-right: 1px solid rgba(0, 0, 0, .1);
+}
+
+.navbar .nav li:first-child a {
+    border-left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.navbar .nav li:last-child a {
+    border-right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.footer{
+    margin-top:500px;
+    width:100%;
+    height: 100px;
+    color:#ffffff;
+    background: #cccccc url('../img/tweed.png') 0 0 repeat;
+}
+
+.footer-row{
+    height:60px;
+}
+
+#copyright{
+    background: #323232;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    width: 1180px;
+    color:#CDCDCD;
+}
+
+ul.inline > li.delimiter{
+    border-left: 1px dotted #A9A9A9;
+    height: 12px;
+}
+
+.box {
+    width:100%;
+    height:100%;
+    background:#f9f9f9;
+    margin:0 auto 30px auto;
+    border:1px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+}
+
+/*==================================================
+ * Effect 1
+ * ===============================================*/
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+}
+
+/*==================================================
+ * Effect 4
+ * ===============================================*/
+.effect4
+{
+  position: relative;
+}
+.effect4:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  right: 10px;
+  left: auto;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+hr.default_hr{
+    margin:15px;
+}
+
+ol, ul {
+    list-style: none outside none;
+}
+
+.login_back_div{
+    position:absolute;
+    width:100%;
+    height: 100%;
+    background: #cccccc url('../img/tweed.png') 0 0 repeat;
+}
+
+.login_div{
+    width:600px;
+    height:400px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-200px;
+    margin-left:-300px;
+    background: #cccccc url('../img/login_back.png') 0 0 repeat;
+    box-shadow: 0 5px 35px rgba(0,0,0,.65);
+    -moz-box-shadow: 0 5px 35px rgba(0,0,0,.65);
+    -webkit-box-shadow: 0 5px 35px rgba(0,0,0,.65);
+}
+
+.login-form legend{
+    font-weight: bold;
+    text-align: center;
+}
+
+.control-container{
+    margin:15px 20px 10px 10px;
+}
+
+.control-container div.controls{
+    margin-top: 10px;
+}
+
+span.red{
+    color:#FF0000;
+}
+
+.weather-div{
+    overflow: hidden;
+    width: 300px;
+    height:35px;
+    line-height: 35px;
+    margin-left: 10px;
+}
+
+.weather-div a{
+    cursor: default;
+    color: #9d4f56;
+}

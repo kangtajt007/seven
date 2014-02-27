@@ -1,0 +1,68 @@
+{% extends "normal.html" %}
+{% load staticfiles %}
+{% load page_tag %}
+{% block resource %}
+    <link href="{% static "css/blog/blog.css" %}" rel="stylesheet" media="screen">
+{% endblock resource %}
+
+{% block content %}
+    <ul class="breadcrumb">
+        <li><a href="#">首页</a> <span class="divider">/</span></li>
+        {% if blog_type and blog_type.type_name %}
+        <li><a href="/blog/list/1/">博客</a> <span class="divider">/</span></li>
+        <li class="active">{{ blog_type.type_name }}</li>
+        {% else %}
+        <li class="active">博客</li>
+        {% endif %}
+    </ul>
+
+    {% if user and user.first_name %}
+        <div style="margin:0 0 10px 0;">
+            <a href="../edit/" class="btn btn-success" title="发表新的博客">写博客</a>
+        </div>
+    {% endif %}
+
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="box effect4" style="height:290px;">
+                <div class="subject_div">
+                    <a href="../get/{{ blog.id }}/" class="blog_subject">{{ blog.subject }}</a>
+                    <a href="../get/{{ blog.id }}/" class="read_all"><i class="icon-eye-open"></i>查看全文</a>
+                </div>
+                <div class="content_div">
+                    <p class="ellipsis">
+                        <a href="../get/{{ blog.id }}/" class="visible-desktop">
+                            <img src="{% static "img/blog/20111205140322888102.jpg" %}" title="{{ blog.subject }}"
+                                 alt="{{ blog.subject }}" class="thumbnail align-left">
+                        </a>
+                        {{ blog.content }}
+                    </p>
+                </div>
+                <div class="foot_div">
+                    <i class="icon-fire"></i>
+                    <span>阅读次数: {{ blog.view_time }} </span>
+                    <ul class="inline visible-desktop">
+                        <li>
+                            <span><i class="icon-calendar"></i>{{ blog.create_time|date:"Y-m-j" }}</span>
+                        </li>
+                        <li class="delimiter"></li>
+                        <li>
+                            <a href="/blog/list/type/{{ blog.type_id.id }}/1/"><i class="icon-list-alt"></i>{{ blog.type_id }}</a>
+                        </li>
+                        <li class="delimiter"></li>
+                        <li>
+                            <a href="#"><i class="icon-user"></i>{{ blog.author }}</a>
+                        </li>
+                        <li class="delimiter"></li>
+                        <li>
+                            <a href="#"><i class="icon-comment"></i>12</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+        {% paging page %}
+    {% else %}
+        <p>博主太懒了，一篇博客都没写.</p>
+    {% endif %}
+{% endblock %}

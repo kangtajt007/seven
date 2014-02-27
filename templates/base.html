@@ -1,0 +1,62 @@
+{% extends "root.html" %}
+{% block angularApp %}ng-app="baseApp"{% endblock %}
+{% load staticfiles %}
+{% block rootResource %}
+    <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" type="text/ecmascript"></script>
+    <script type="text/javascript" src="{% static "js/baseApp/controller.js" %}"></script>
+    {% block resource %}{% endblock resource %}
+{% endblock rootResource%}
+
+{% block rootContext %}
+<div class="top_div container-fluid">
+    <div class="pull-left" ng-app="baseApp" ng-controller="WeatherCtrl">
+        <div class="${ getWeatherInfo() }">
+            <img ng-src="http://m.weather.com.cn/img/${ data.img1 }"/>
+            <span>${ data.city }</span>
+            <a title="中国天气网${ data.ptime }发布的${ data.city }天气情况">${ data.weather }&nbsp;&nbsp;${ data.temp2 }~${ data.temp1 }</a>
+        </div>
+    </div>
+    <div id="login_info_div" class="pull-right" style="margin-right: 40px;">
+        {% if user and user.first_name %}
+            <span>{{ user.first_name }}</span>
+            <a href="/utente/logout/" class="btn btn-mini" title="退出"><i class="icon-off"></i></a>
+        {% endif %}
+    </div>
+</div>
+<div class="container">
+    <div class="masthead">
+        <a href="/">
+            <img src="{% static "img/blog_log.png"%}"/>
+        </a>
+
+        <div class="navbar visible-desktop">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <li {% if curModule == 'main' %}class="active"{% endif %}><a href="/">首页</a></li>
+                        <li {% if curModule == 'blog' %}class="active"{% endif %}><a href="/blog/list/1/">博客</a></li>
+                        <li {% if curModule == 'say' %}class="active"{% endif %}><a href="/say/">说说</a></li>
+                        <li {% if curModule == 'music' %}class="active"{% endif %}><a href="/music/">音乐</a></li>
+                        <li {% if curModule == 'photo' %}class="active"{% endif %}><a href="/photo/wall/">相册</a></li>
+                        <li {% if curModule == 'message' %}class="active"{% endif %}><a href="/message/">留言板</a></li>
+                        <li {% if curModule == 'about' %}class="active"{% endif %}><a href="/about/">关于</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block context %}{% endblock %}
+</div>
+{% block footer %}
+    <div class="footer">
+        <div class="row footer-row">
+
+        </div>
+        <div id="copyright" class="center">
+            <p>&copy; 2013 - 2015 嘟嘟博客 Design by 何一帆</p>
+        </div>
+    </div>
+{% endblock %}
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+{% endblock %}

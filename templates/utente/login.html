@@ -1,0 +1,53 @@
+{% extends "root.html" %}
+{% load staticfiles %}
+{% block title %}欢迎访问嘟嘟博客{% endblock %}
+
+{% block rootResource %}
+{% endblock %}
+
+{% block rootContext %}
+    <div class="login_back_div">
+        <div class="box login_div">
+            <div>
+                <form class="login-form form-inline pull-right" action="/utente/login/valid/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <fieldset>
+                        <legend>登录嘟嘟博客</legend>
+                        <div class="control-container">
+                            {% if error %}
+                                <span class="red">{{ message }}</span>
+                            {% endif %}
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-user"></i></span>
+                                    <input class="span2" name="userName" type="text" placeholder="请输入账号">
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-lock"></i></span>
+                                    <input class="span2" name="userPwd" type="password" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input type="checkbox" value="">下次自动登录
+                                </label>
+                                <a href="#" title="找回密码">忘记密码了?</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">登录</button>
+                        <button type="button" class="btn btn-info">注册</button>
+                        <div>
+                            <label>其他登录方式</label>
+                            <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100589044&redirect_uri=52dudu.duapp.com" title="使用QQ账号登录">
+                                <img src="{% static "img/Connect_logo_7.png" %}"/>
+                            </a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

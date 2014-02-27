@@ -1,0 +1,44 @@
+{% extends "normal.html" %}
+{% load staticfiles %}
+{% load page_tag %}
+{% block resource %}
+    <link href="{% static "css/blog/blog.css" %}" rel="stylesheet" media="screen">
+{% endblock resource %}
+
+{% block content %}
+    <ul class="breadcrumb">
+        <li><a href="#">首页</a> <span class="divider">/</span></li>
+        <li><a href="/blog/list/1/">博客</a> <span class="divider">/</span></li>
+        <li class="active">{{ blog.subject }}</li>
+    </ul>
+
+    <div class="box effect4">
+        <div style="padding: 0 10px;">
+            <h3>{{ blog.subject }}</h3>
+            <ul class="inline visible-desktop">
+                <li>
+                    <span><i class="icon-calendar"></i>{{ blog.create_time|date:"Y-m-j" }}</span>
+                </li>
+                <li class="delimiter"></li>
+                <li>
+                    <a href="#"><i class="icon-list-alt"></i>{{ blog.type_id }}</a>
+                </li>
+                <li class="delimiter"></li>
+                <li>
+                    <a href="#"><i class="icon-user"></i>{{ blog.author }}</a>
+                </li>
+                <li class="delimiter"></li>
+                <li>
+                    <a href="#"><i class="icon-tags"></i>{{ blog.tag }}</a>
+                </li>
+            </ul>
+        </div>
+        <hr class="default_hr"/>
+        <div id="blog_html" style="padding: 0 10px 10px 10px;">
+            {% autoescape off %}
+                {{ blog.html }}
+            {% endautoescape %}
+        </div>
+    </div>
+
+{% endblock %}
